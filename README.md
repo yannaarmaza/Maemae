@@ -22,33 +22,23 @@ Once you are on the Remix website, create a new file by clicking on the "+" icon
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract ErrorHandlingExample {
-    uint public myNumber;
-
-    function setNumber(uint _num) public {
-        // Require condition to ensure _num is not zero
-        require(_num != 0, "Number cannot be zero");
-
-        // Set myNumber to the provided _num
-        myNumber = _num;
+contract ErrorHandlingDemo {
+    function requireCheck(uint _value) public pure returns (uint) {
+        require(_value != 0, "Value cannot be zero");
+        return _value;
     }
 
-    function assertExample(uint _x) public pure returns (uint) {
-        uint y = _x + 10;
-
-        // Assert condition to check internal consistency
-        assert(y > _x);
-
-        return y;
+    function assertCheck(uint _a, uint _b) public pure returns (uint) {
+        uint sum = _a + _b;
+        assert(sum > _a && sum > _b);
+        return sum;
     }
 
-    function revertExample(uint _num) public pure returns (string memory) {
-        // Check if _num is the magic number (42) and revert with a message
-        if (_num == 42) {
-            revert("Magic number detected!");
+    function revertCheck(uint _number) public pure {
+        if (_number == 13) {
+            revert("Unlucky number detected!");
         }
-
-        return "No magic here";
+        
     }
 }
 ```
